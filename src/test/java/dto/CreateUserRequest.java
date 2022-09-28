@@ -31,4 +31,13 @@ public class CreateUserRequest {
         this.email = email;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "CreateUserRequest{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

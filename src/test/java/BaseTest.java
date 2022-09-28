@@ -1,6 +1,7 @@
 import dto.CreateUserRequest;
 import dto.LoginRequest;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -64,6 +65,7 @@ public class BaseTest {
         return UUID.randomUUID() + "@gmail.com";
     }
 
+    @Step("Удаление полльзователя")
     protected void loginAndDeleteUser(LoginRequest login) {
         String accessToken = loginUser(login)
                 .then().assertThat()
@@ -108,6 +110,7 @@ public class BaseTest {
                 .delete(url);
     }
 
+    @Step("Создание полльзователя")
     protected Response createUser(CreateUserRequest user) {
         return postRequest(user, null, "/auth/register");
     }

@@ -21,4 +21,12 @@ public class LoginRequest {
         this.email = email;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "LoginRequest{" +
+                "password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

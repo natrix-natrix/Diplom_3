@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,43 +12,49 @@ import java.time.Duration;
 public class MainPage extends BasePage {
 
     protected static final String CONSTRUCTOR_TEXT = "Соберите бургер";
-    private final By constructorText = By.xpath("//*[@id='root']/div/main/section[1]/h1");
+    private final By constructorText = By.className("text_type_main-large");
     //кнопка личный кабинет
-    private final By personalAreaButton = By.xpath("/html/body/div/div/header/nav/a");
-    private final By accountEnterButton = By.xpath("//*[@id='root']/div/main/section[2]/div/button");
+    private final By personalAreaButton = By.xpath("//*[@href='/account']");
+    private final By accountEnterButton = By.xpath("//button[text()='Войти в аккаунт']");
 
-    private final By showBunsButton = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[1]");
-    private final By showSauceButton = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[2]");
-    private final By showFillingButton = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[3]");
+    private final By showBunsButton = By.xpath("//span[text()='Булки']");
+    private final By showSauceButton = By.xpath("//span[text()='Соусы']");
+    private final By showFillingButton = By.xpath("//span[text()='Начинки']");
 
-    private final By bunsHeader = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[1]");
-    private final By sauceHeader = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[2]");
-    private final By fillingHeader = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[3]");
+    private final By bunsHeader = By.xpath("//h2[text()='Булки']");
+    private final By sauceHeader = By.xpath("//h2[text()='Соусы']");
+    private final By fillingHeader = By.xpath("//h2[text()='Начинки']");
 
     public MainPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Основная страница: клик на кнопке 'Личный кабинет'")
     public void personalAreaButtonClick() {
         click(driver.findElement(personalAreaButton));
     }
 
+    @Step("Основная страница: клик на кнопке 'Войти в аккаунт'")
     public void loginButtonBottomClick() {
         click(driver.findElement(accountEnterButton));
     }
 
+    @Step("Основная страница: клик на кнопке 'Булки'")
     public void showBunsButtonClick() {
         click(driver.findElement(showBunsButton));
     }
 
+    @Step("Основная страница: клик на кнопке 'Соусы'")
     public void showSauceButtonClick() {
         click(driver.findElement(showSauceButton));
     }
 
+    @Step("Основная страница: клик на кнопке 'Начинки'")
     public void showFillingButtonClick() {
         click(driver.findElement(showFillingButton));
     }
 
+    @Step("Основная страница: на этой ли мы странице?")
     public boolean isMainPage() {
         try {
             WebElement element = driver.findElement(constructorText);
@@ -59,14 +66,17 @@ public class MainPage extends BasePage {
         }
     }
 
+    @Step("Основная страница: виден ли раздел с булками?")
     public boolean isBunsVisible() {
         return isElementVisible(bunsHeader);
     }
 
+    @Step("Основная страница: виден ли раздел с соусами?")
     public boolean isSauceVisible() {
         return isElementVisible(sauceHeader);
     }
 
+    @Step("Основная страница: виден ли раздел с начинками?")
     public boolean isFillingVisible() {
         return isElementVisible(fillingHeader);
     }

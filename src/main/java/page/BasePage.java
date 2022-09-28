@@ -35,7 +35,6 @@ public abstract class BasePage {
             }
         }
         Actions actions = new Actions(driver);
-//        actions.scrollToElement(element).build().perform();
         actions.moveToElement(element).click().build().perform();
     }
 }
